@@ -1,0 +1,46 @@
+---
+import NavBar from "@components/header/Header.astro";
+---
+
+<main
+  class="fixed top-0 left-0 right-0 flex items-center justify-between z-30 p-2"
+>
+  <section class="w-full transition-opacity navbar-wrapper">
+    <NavBar />
+  </section>
+</main>
+
+<script>
+  const navbarWrapper = document.querySelector(".navbar-wrapper")!;
+
+  const toggleNavbarOpacity = () => {
+    const isScrolledDown = window.scrollY > 30;
+    navbarWrapper.classList.toggle("opaque", isScrolledDown);
+  };
+
+  window.addEventListener("scroll", toggleNavbarOpacity);
+</script>
+
+<style>
+  main::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+    mask-image: linear-gradient(to bottom, black, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .navbar-wrapper {
+    opacity: 0;
+  }
+
+  .navbar-wrapper.opaque {
+    opacity: 1;
+  }
+</style>

@@ -1,0 +1,26 @@
+---
+const title = "vivek";
+import Twitter from "@components/socials/twitter.astro";
+import Instagram from "@components/socials/instagram.astro";
+const subtitle = "software builder, traveller, writer";
+const imageUrl = "https://github.com/vivekpal1.png";
+import "../styles/main.css";
+---
+
+<section
+  class="flex flex-col items-center space-y-3 animate-delay-50 p-4 rounded-lg shadow-lg"
+>
+  <img
+    src={imageUrl}
+    alt="{title}"
+    class="w-24 h-24 rounded-full object-cover"
+  />
+  <h1 class="font-bold highlight-text text-xxl text-gray-800 dark:text-white">
+    {title}
+  </h1>
+  <p class="font-bold text-gray-600 dark:text-gray-500">{subtitle}</p>
+  <div class="flex space-x-2 justify-center">
+    <Twitter userName="vivekpal0x" />
+    <Instagram userName="vivekpal.in" />
+  </div>
+</section>

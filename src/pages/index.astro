@@ -1,0 +1,77 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Avatar from "@components/avatar.astro";
+import ProjectsListLight from "@components/projectsList/projectsListLight.astro";
+import PostsListLight from "@components/postsList/postsListLight.astro";
+import Link from "@components/contactLink.astro";
+const classList = [
+  "opacity-10",
+  "animate-slideUp",
+  "animate-fill-both",
+  "font-sans",
+  "font-medium",
+  "mt-8",
+];
+---
+
+<Layout title="vivek">
+  <article class="prose">
+    <Avatar />
+    <section class:list={["animate-delay-150", classList]}>
+      <p>
+        🌍✨ hey there, web3 souls! i'm vivek, decentralized software builder
+        🌐👨‍💻, part time traveller, writer, a proud member of
+        <span class="font-serif italic decoration-none"></span>,
+        <a
+          class="highlight-text font-bold decoration-none inline-block"
+          target="_blank"
+          href="https://superteam.fun"
+        >
+          superteam india 🇮🇳</a
+        >.
+      </p>
+    </section>
+    <section class:list={["animate-delay-450", classList]}>
+      <PostsListLight />
+    </section>
+    <section class:list={["animate-delay-600", classList]}>
+      <p id="blockTitle">more about me</p>
+      <p>
+        a 20-year-old software engineer diving into web3 world 🌐👨‍💻, especially
+        the solana ecosystem 🔗. while my hands are off keyboard, you'll find me
+        traveling 🌍, diving into new cultures, politics, and histories 🏛️📚.
+      </p>
+      <p>
+        as an introvert 🤫, formal meetings aren't my thing, but I love writing
+        📝 about my adventures and experiences, blending my engineering journey
+        with my travels 🚀✈️. old Indian beats 🎶 are my jam, fueling my energy
+        and creativity like a powerful elixir ⚡🧠.
+      </p>
+      <p>
+        i'm on a quest for peace ✌️, seeking answers to life's unusual questions
+        ❓, and discovering places that spark my creativity 🌟. join me on this
+        journey if you're looking to break free from procrastination ⏳, or just
+        want to chat about crypto 💸, decentralization 🌐, p2p tech, geopolitics
+        🌎, or fascinating histories and geoeconomics 📈.
+      </p>
+    </section>
+    <section class:list={["animate-delay-300", classList]}>
+      <ProjectsListLight />
+    </section>
+    <section class:list={["animate-delay-750", classList]}>
+      <Link />
+    </section>
+  </article>
+</Layout>
+
+<style is:global>
+  article a {
+    @apply linkBase;
+  }
+  #blockTitle {
+    @apply md:text-base font-extrabold italic;
+  }
+  #blockTitle::before {
+    content: ":: ";
+  }
+</style>
