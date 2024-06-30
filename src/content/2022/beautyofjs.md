@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/postsLayout.astro
 title: Beauty Of Javascript
-collection: 2023
+collection: 2022
 pubDate: "2022-02-11"
 slug: beauty-of-js
 description: Here is why I love to code in Javascript

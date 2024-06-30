@@ -3,7 +3,8 @@ import { getCollection } from "astro:content";
 export async function getStaticPaths() {
   const Posts2024 = await getCollection("2024");
   const Posts2023 = await getCollection("2023");
-  const blogEntries = [...Posts2024, ...Posts2023];
+  const Posts2022 = await getCollection("2022");
+  const blogEntries = [...Posts2024, ...Posts2023, ...Posts2022];
   return blogEntries.map((entry) => ({
     params: { post: entry.slug },
     props: { entry },
