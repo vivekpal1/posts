@@ -46,6 +46,4 @@ Inspired by the raw storytelling of Mirabai, Munshi Premchand, and Ghalib, my wr
 
 Join me as we explore the unseen beauty of darkness, the impact of light pollution, and the slow, poetic life of remote areas. Let's cherish the moments where we can disconnect from the artificial and reconnect with the natural. 🌟
 
-**Tags:** #LightPollution #Nature #Travel #Binsar #Poetry #SlowLife
-
 **Reach out:** [Contact Me](mailto:your-email@example.com)
