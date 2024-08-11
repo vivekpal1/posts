@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/postsLayout.astro
-title: Creating Custom Linux Kernel Modules
+title: Creating Custom Kernel Modules
 collection: 2024
 pubDate: "2024-08-11"
 slug: custom-kernel-modules
