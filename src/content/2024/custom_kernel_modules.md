@@ -1,10 +1,10 @@
 ---
 layout: ../../layouts/postsLayout.astro
-title: "Creating Custom Linux Kernel Modules: A Comprehensive Guide"
+title: Creating Custom Linux Kernel Modules
 collection: 2024
-pubDate: 2024-08-11
+pubDate: "2024-08-11"
 slug: custom-kernel-modules
-description: "Learn how to create, compile, and load custom Linux kernel modules. This guide covers the basics, advanced techniques, and best practices for kernel module development."
+description: Learn how to create, compile, and load custom Linux kernel modules. This guide covers the basics, advanced techniques, and best practices for kernel module development.
 tags: ["Linux", "Kernel", "Programming", "C", "System Development"]
 ---
 
