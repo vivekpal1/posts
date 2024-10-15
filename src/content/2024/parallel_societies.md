@@ -5,7 +5,7 @@ collection: 2024
 pubDate: "2024-09-30"
 slug: parallel-societies
 description:  The rationale behind parallel societies, examines historical precedents, and considers their potential in the age of Web3 and artificial intelligence.
-tags: ["Linux", "Kernel", "Programming", "C", "System Development"]
+tags: ["Network States", "Parallel Institutions", "Web3", "AI", "Zuzalu"]
 ---
 
 In an era of rapid technological change and growing distrust in traditional centralized systems, the concept of parallel societies and institutions has gained renewed interest after Balaji introduced [The Network State](https://thenetworkstate.com) book. These alternative structures aim to address the shortcomings of existing systems by creating new, often decentralized models that operate alongside - or entirely outside of - mainstream institutions.
