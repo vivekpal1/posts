@@ -2,9 +2,9 @@
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const wikiEntries = await getCollection("wiki");
+  const wikiEntries = await getCollection("wiki-free");
   return wikiEntries.map((entry) => ({
-    params: { wiki: entry.slug },
+    params: { slug: entry.slug },
     props: { entry },
   }));
 }

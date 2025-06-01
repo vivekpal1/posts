@@ -1,0 +1,84 @@
+---
+import Layout from '@layouts/Layout.astro'
+
+const { 
+  title, 
+  description, 
+  location, 
+  category, 
+  lastUpdated,
+  tags,
+  rating,
+  priceRange 
+} = Astro.props.frontmatter
+---
+
+<Layout title={title}>
+  <main>
+    <article>
+      <section class="border-b borderBase pb-5 pt-5">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <a href="/wiki" class="text-blue-600 dark:text-blue-400 hover:underline text-sm mb-2 block">
+              ← Back to Wiki
+            </a>
+            <p class="text-3xl font-bold">{title}</p>
+            <p class="text-lg text-gray-600 dark:text-gray-400 mt-2">{description}</p>
+          </div>
+          
+          <div class="bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-200 px-3 py-1 rounded text-sm">
+            🆓 Free Guide
+          </div>
+        </div>
+        
+        <div class="flex flex-wrap gap-4 text-sm text-gray-500 dark:text-gray-400">
+          <span>📍 {location.charAt(0).toUpperCase() + location.slice(1)}</span>
+          <span>🏷️ {category}</span>
+          {rating && <span>⭐ {rating}/5</span>}
+          {priceRange && <span>💰 {priceRange}</span>}
+          <span>📅 Updated: {lastUpdated}</span>
+        </div>
+        
+        {tags && (
+          <div class="flex flex-wrap gap-2 mt-3">
+            {tags.map((tag: string) => (
+              <span class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-xs">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </section>
+      
+      <div class="prose max-w-none dark:prose-invert">
+        <slot />
+        
+        <!-- Upgrade CTA -->
+        <div class="my-8 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 rounded-lg p-6">
+          <div class="text-center">
+            <h3 class="text-xl font-bold text-yellow-800 dark:text-yellow-200 mb-2">
+              Want More Detailed Guides?
+            </h3>
+            <p class="text-yellow-700 dark:text-yellow-300 mb-4">
+              Upgrade to premium for exact locations, contact info, insider tips, and exclusive spots.
+            </p>
+            <a 
+              href="/wiki" 
+              class="inline-block bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-6 rounded-lg"
+            >
+              Upgrade to Premium
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<style>
+.prose { @apply text-gray-800 dark:text-gray-200; }
+.prose h1, .prose h2, .prose h3, .prose h4 { @apply text-black dark:text-white; }
+.prose ul, .prose ol { @apply text-gray-700 dark:text-gray-300; }
+.prose strong { @apply text-black dark:text-white; }
+.prose code { @apply bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-1 py-0.5 rounded; }
+</style>
