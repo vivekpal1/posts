@@ -1,0 +1,321 @@
+---
+import Layout from '@layouts/Layout.astro'
+
+const { 
+  title, 
+  description, 
+  location, 
+  category, 
+  isPremium, 
+  previewLength, 
+  lastUpdated,
+  tags,
+  rating,
+  priceRange,
+  coordinates 
+} = Astro.props.frontmatter
+
+// Get the full content
+const content = await Astro.slots.render('default');
+
+// Split content at premium marker
+const premiumStart = content.indexOf('<!-- PREMIUM_CONTENT_START -->');
+const premiumEnd = content.indexOf('<!-- PREMIUM_CONTENT_END -->');
+
+let freeContent = content;
+let premiumContent = '';
+let hasPremiumContent = false;
+
+if (premiumStart !== -1 && premiumEnd !== -1) {
+  freeContent = content.substring(0, premiumStart);
+  premiumContent = content.substring(premiumStart + '<!-- PREMIUM_CONTENT_START -->'.length, premiumEnd);
+  hasPremiumContent = true;
+}
+---
+
+<Layout title={title}>
+  <main>
+    <article>
+      <section class="border-b borderBase pb-5 pt-5">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <p class="text-3xl font-bold">{title}</p>
+            <p class="text-lg text-gray-600 dark:text-gray-400 mt-2">{description}</p>
+          </div>
+          
+          <!-- Wallet connection area -->
+          <div class="text-sm flex flex-col items-end gap-2">
+            <div id="wallet-status" class="hidden">
+              <span class="text-green-600 dark:text-green-400">✅ Wallet Connected</span>
+            </div>
+            <button 
+              id="wallet-connect" 
+              class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors"
+            >
+              Connect Wallet
+            </button>
+            <button 
+              id="skip-wallet" 
+              class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-xs underline"
+            >
+              Skip & View Free Content
+            </button>
+          </div>
+        </div>
+        
+        <div class="flex flex-wrap gap-4 text-sm text-gray-500 dark:text-gray-400">
+          <span>📍 {location.charAt(0).toUpperCase() + location.slice(1)}</span>
+          <span>🏷️ {category}</span>
+          {rating && <span>⭐ {rating}/5</span>}
+          {priceRange && <span>💰 {priceRange}</span>}
+          <span>📅 Updated: {lastUpdated}</span>
+          {isPremium && <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-2 py-1 rounded">🔒 Premium</span>}
+        </div>
+        
+        {tags && (
+          <div class="flex flex-wrap gap-2 mt-3">
+            {tags.map((tag: string) => (
+              <span class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-xs">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </section>
+      
+      <!-- Content Area -->
+      <div class="prose max-w-none dark:prose-invert">
+        <!-- Free Content (Always Visible) -->
+        <div id="free-content">
+          <Fragment set:html={freeContent} />
+        </div>
+        
+        <!-- Premium Content Gate -->
+        {hasPremiumContent && (
+          <div id="premium-gate" class="my-8 border-2 border-dashed border-yellow-400 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-6">
+            <div class="text-center">
+              <h3 class="text-xl font-bold text-yellow-800 dark:text-yellow-200 mb-2">
+                🔒 Premium Content Ahead
+              </h3>
+              <p class="text-yellow-700 dark:text-yellow-300 mb-4">
+                This is just the beginning! Get access to detailed reviews, exact locations, 
+                insider tips, and exclusive spots for a one-time payment.
+              </p>
+              
+              <!-- Payment Options -->
+              <div class="space-y-4">
+                <!-- Wallet Payment (Primary) -->
+                <div id="wallet-payment" class="bg-blue-100 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded p-4">
+                  <p class="text-blue-800 dark:text-blue-200 mb-2 font-semibold">
+                    💳 Instant Access with Solana
+                  </p>
+                  <p class="text-lg font-bold text-blue-900 dark:text-blue-100 mb-3">
+                    $50 USD (≈ 0.5 SOL)
+                  </p>
+                  <button 
+                    id="pay-with-wallet" 
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled
+                  >
+                    Connect Wallet to Pay
+                  </button>
+                  <p class="text-xs text-blue-600 dark:text-blue-400 mt-2">
+                    Secure payment to: vivgdu332GMEk3FaupQa92gQjYd9LX6TMgjMVsLaCu4
+                  </p>
+                </div>
+                
+                <!-- Manual Payment (Alternative) -->
+                <div class="bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded p-4">
+                  <p class="text-gray-800 dark:text-gray-200 mb-2 font-semibold">
+                    📧 Manual Payment
+                  </p>
+                  <div class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                    <p>1. Send exactly 0.5 SOL to: <code class="bg-gray-200 dark:bg-gray-700 px-1 py-0.5 rounded text-xs">vivgdu332GMEk3FaupQa92gQjYd9LX6TMgjMVsLaCu4</code></p>
+                    <p>2. Email transaction signature to: <strong>31vivekpal@gmail.com</strong></p>
+                    <p>3. Access granted within 24 hours</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        
+        <!-- Premium Content (Hidden by default) -->
+        {hasPremiumContent && (
+          <div id="premium-content" class="hidden">
+            <Fragment set:html={premiumContent} />
+          </div>
+        )}
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<!-- Client-side functionality -->
+<script>
+  // Check if user has already paid
+  function checkPremiumAccess() {
+    const titleSlug = document.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+    const hasAccess = localStorage.getItem(`premium_${titleSlug}`) === 'true' || 
+                     localStorage.getItem('premium_access') === 'true';
+    
+    if (hasAccess) {
+      showPremiumContent();
+    }
+    
+    return hasAccess;
+  }
+  
+  // Show premium content
+  function showPremiumContent() {
+    const gate = document.getElementById('premium-gate');
+    const content = document.getElementById('premium-content');
+    
+    if (gate) gate.style.display = 'none';
+    if (content) content.classList.remove('hidden');
+  }
+  
+  // Simulate wallet connection
+  function connectWallet() {
+    const connectBtn = document.getElementById('wallet-connect');
+    const walletStatus = document.getElementById('wallet-status');
+    const payBtn = document.getElementById('pay-with-wallet');
+    
+    // Simulate connection process
+    if (connectBtn) connectBtn.textContent = 'Connecting...';
+    
+    setTimeout(() => {
+      // Update UI to show connected state
+      if (connectBtn) {
+        connectBtn.textContent = 'Disconnect';
+        connectBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+        connectBtn.classList.add('bg-red-600', 'hover:bg-red-700');
+      }
+      
+      if (walletStatus) {
+        walletStatus.classList.remove('hidden');
+      }
+      
+      if (payBtn) {
+        payBtn.disabled = false;
+        payBtn.textContent = 'Pay $50 with Solana';
+        payBtn.classList.remove('disabled:opacity-50', 'disabled:cursor-not-allowed');
+      }
+      
+      // Store mock wallet connection
+      localStorage.setItem('wallet_connected', 'true');
+    }, 1500);
+  }
+  
+  // Simulate payment
+  function processPayment() {
+    const payBtn = document.getElementById('pay-with-wallet');
+    
+    if (payBtn) {
+      payBtn.textContent = 'Processing...';
+      payBtn.disabled = true;
+    }
+    
+    setTimeout(() => {
+      // Simulate successful payment
+      const titleSlug = document.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+      localStorage.setItem(`premium_${titleSlug}`, 'true');
+      localStorage.setItem('premium_access', 'true');
+      
+      showPremiumContent();
+      
+      // Show success message
+      const gate = document.getElementById('premium-gate');
+      if (gate) {
+        gate.innerHTML = `
+          <div class="text-center">
+            <h3 class="text-xl font-bold text-green-800 dark:text-green-200 mb-2">
+              🎉 Payment Successful!
+            </h3>
+            <p class="text-green-700 dark:text-green-300">
+              You now have lifetime access to this premium content. Enjoy!
+            </p>
+          </div>
+        `;
+        gate.className = 'my-8 border-2 border-green-400 bg-green-50 dark:bg-green-900/20 rounded-lg p-6';
+      }
+    }, 2000);
+  }
+  
+  // Skip to free content
+  function skipToFreeContent() {
+    const gate = document.getElementById('premium-gate');
+    if (gate) {
+      gate.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+  
+  // Event listeners
+  document.addEventListener('DOMContentLoaded', function() {
+    checkPremiumAccess();
+    
+    const connectBtn = document.getElementById('wallet-connect');
+    const payBtn = document.getElementById('pay-with-wallet');
+    const skipBtn = document.getElementById('skip-wallet');
+    
+    if (connectBtn) {
+      connectBtn.addEventListener('click', function() {
+        if (this.textContent === 'Connect Wallet') {
+          connectWallet();
+        } else {
+          // Disconnect wallet
+          this.textContent = 'Connect Wallet';
+          this.classList.remove('bg-red-600', 'hover:bg-red-700');
+          this.classList.add('bg-blue-600', 'hover:bg-blue-700');
+          
+          const walletStatus = document.getElementById('wallet-status');
+          if (walletStatus) walletStatus.classList.add('hidden');
+          
+          const payButton = document.getElementById('pay-with-wallet');
+          if (payButton) {
+            payButton.disabled = true;
+            payButton.textContent = 'Connect Wallet to Pay';
+          }
+          
+          localStorage.removeItem('wallet_connected');
+        }
+      });
+    }
+    
+    if (payBtn) {
+      payBtn.addEventListener('click', processPayment);
+    }
+    
+    if (skipBtn) {
+      skipBtn.addEventListener('click', skipToFreeContent);
+    }
+    
+    // Check if wallet was previously connected
+    if (localStorage.getItem('wallet_connected') === 'true') {
+      connectWallet();
+    }
+  });
+</script>
+
+<style>
+  /* Ensure proper styling for premium content */
+  .prose {
+    @apply text-gray-800 dark:text-gray-200;
+  }
+  
+  .prose h1, .prose h2, .prose h3, .prose h4 {
+    @apply text-black dark:text-white;
+  }
+  
+  .prose ul, .prose ol {
+    @apply text-gray-700 dark:text-gray-300;
+  }
+  
+  .prose strong {
+    @apply text-black dark:text-white;
+  }
+  
+  .prose code {
+    @apply bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-1 py-0.5 rounded;
+  }
+</style>

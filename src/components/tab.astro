@@ -12,6 +12,11 @@ const jumpTags = [
     path: '/posts/',
     isActive: pathName === 'posts',
   },
+  {
+    tag: 'Wiki',
+    path: '/wiki/',
+    isActive: pathName === 'wiki' || pathname.startsWith('/wiki/'),
+  },
 ]
 ---
 <main class="flex gap-5">

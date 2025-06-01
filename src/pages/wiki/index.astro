@@ -1,0 +1,122 @@
+---
+import Layout from '@layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+
+const wikiEntries = await getCollection('wiki')
+
+// Group entries by location and category
+const groupedEntries = wikiEntries.reduce((acc, entry) => {
+  const { location, category } = entry.data
+  if (!acc[location]) acc[location] = {}
+  if (!acc[location][category]) acc[location][category] = []
+  acc[location][category].push(entry)
+  return acc
+}, {} as Record<string, Record<string, typeof wikiEntries>>)
+---
+
+<Layout title="Wiki - Digital Nomad's Guide">
+  <main class="max-w-4xl mx-auto">
+    <section class="border-b borderBase pb-8 pt-8">
+      <h1 class="text-4xl font-bold mb-4">🌍 Digital Nomad's Wiki</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">
+        Your comprehensive guide to the best spots across Southeast Asia and beyond. 
+        Curated by a fellow nomad, powered by Solana.
+      </p>
+      
+      <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
+        <h3 class="font-bold text-blue-800 dark:text-blue-200 mb-2">💡 How it works</h3>
+        <ul class="text-blue-700 dark:text-blue-300 text-sm space-y-1">
+          <li>• Browse free previews of all guides</li>
+          <li>• Pay once with Solana for lifetime access to premium content</li>
+          <li>• Get detailed reviews, exact locations, and insider tips</li>
+          <li>• Content updated regularly based on my travels</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="py-8">
+      {Object.entries(groupedEntries).map(([location, categories]) => (
+        <div class="mb-12">
+          <h2 class="text-2xl font-bold mb-6 capitalize flex items-center">
+            <span class="mr-2">
+              {location === 'danang' ? '🇻🇳' : 
+               location === 'saigon' ? '🏙️' : 
+               location === 'thailand' ? '🇹🇭' : '📍'}
+            </span>
+            {location.replace('-', ' ')}
+          </h2>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Object.entries(categories).map(([category, entries]) => (
+              <div class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                <div class="bg-gray-50 dark:bg-gray-800 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+                  <h3 class="font-semibold capitalize flex items-center">
+                    <span class="mr-2">
+                      {category === 'cafe' ? '☕' :
+                       category === 'coworking' ? '💼' :
+                       category === 'vegan-food' ? '🌱' :
+                       category === 'spots' ? '📍' : '🏷️'}
+                    </span>
+                    {category.replace('-', ' ')}
+                  </h3>
+                </div>
+                
+                <div class="p-4">
+                  {entries.map((entry) => (
+                    <a 
+                      href={`/wiki/${entry.slug}`}
+                      class="block hover:bg-gray-50 dark:hover:bg-gray-800 rounded p-3 -m-3 transition-colors"
+                    >
+                      <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-medium text-sm">{entry.data.title}</h4>
+                        {entry.data.isPremium && (
+                          <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Premium</span>
+                        )}
+                      </div>
+                      <p class="text-xs text-gray-600 dark:text-gray-400 line-clamp-2">
+                        {entry.data.description}
+                      </p>
+                      <div class="flex items-center justify-between mt-2 text-xs text-gray-500">
+                        {entry.data.rating && <span>⭐ {entry.data.rating}/5</span>}
+                        {entry.data.priceRange && <span>{entry.data.priceRange}</span>}
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <section class="border-t borderBase pt-8">
+      <div class="text-center">
+        <h2 class="text-2xl font-bold mb-4">Coming Soon 🚀</h2>
+        <div class="grid md:grid-cols-3 gap-4 text-sm">
+          <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
+            <h3 class="font-semibold mb-2">🇹🇭 Thailand Expansion</h3>
+            <p class="text-gray-600 dark:text-gray-400">Bangkok, Chiang Mai, and island guides</p>
+          </div>
+          <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
+            <h3 class="font-semibold mb-2">🏠 Accommodation Reviews</h3>
+            <p class="text-gray-600 dark:text-gray-400">Nomad-friendly apartments and hotels</p>
+          </div>
+          <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
+            <h3 class="font-semibold mb-2">🎯 Membership Tokens</h3>
+            <p class="text-gray-600 dark:text-gray-400">Monthly/lifetime premium access tokens</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

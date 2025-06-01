@@ -3,10 +3,12 @@ import MaskHeader from "@components/header/headerMask.astro";
 import BackTo from "@components/backTo.astro";
 import Tab from "@components/tab.astro";
 import "../styles/main.css";
+
 interface Props {
   title?: string;
 }
 const { title } = Astro.props;
+const isWikiPage = Astro.url.pathname.startsWith('/wiki');
 ---
 
 <!DOCTYPE html>
@@ -26,14 +28,14 @@ const { title } = Astro.props;
           <div
             class:list={[
               {
-                hidden: !["posts", "projects"].includes(
-                  Astro.url.pathname.replace(/\//g, "")
+                hidden: !["posts", "projects", "wiki"].includes(
+                  Astro.url.pathname.split('/')[1]
                 ),
               },
             ]}
           >
             <BackTo backTo="" />
-            <Tab />
+            {!isWikiPage && <Tab />}
           </div>
           <slot />
         </div>

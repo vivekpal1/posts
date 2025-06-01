@@ -1,0 +1,18 @@
+---
+const { pathname } = Astro.url
+const routeActiveStyle = pathname.includes('wiki') ? 'opacity-100' : 'opacity-60 hover:opacity-100 transition-opacity ease';
+---
+
+<a
+  href="/wiki"
+  class:list={[
+    ' text-sm font-medium font-sans dark:text-white text-black  z-40 hidden md:block',
+    routeActiveStyle,
+  ]}>Wiki</a
+>
+<a
+  class:list={[
+    'i-ph-globe text-lg dark:text-white text-black md:hidden',
+    routeActiveStyle,
+  ]}
+  href="/wiki"></a>
