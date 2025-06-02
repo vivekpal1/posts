@@ -1,17 +1,8 @@
 ---
 import Layout from './Layout.astro';
-import { PrivyProvider } from '../components/auth/PrivyProvider';
-import { PaymentGate } from '../components/payment/PaymentGate';
 
 const { frontmatter } = Astro.props;
-const { title, description, location, category, lastUpdated, tags, rating, priceRange } = frontmatter;
-
-// Determine if this is premium content
-const contentSlug = Astro.url.pathname.split('/').pop() || 'unknown';
-const isPremium = frontmatter.premium === true || Astro.url.pathname.includes('/wiki-premium/');
-
-const privyAppId = import.meta.env.PUBLIC_PRIVY_APP_ID;
-const isPrivyConfigured = privyAppId && privyAppId !== 'your_privy_app_id_here';
+const { title, description, country, city, category, lastUpdated, tags, rating, priceRange } = frontmatter;
 ---
 
 <Layout title={title}>
@@ -21,18 +12,12 @@ const isPrivyConfigured = privyAppId && privyAppId !== 'your_privy_app_id_here';
       <header class="mb-8">
         <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-4">
           <a href="/wiki" class="text-blue-600 dark:text-blue-400 hover:underline">← Back to Wiki</a>
-          {location && (
-            <>
-              <span>•</span>
-              <span class="capitalize">{location}</span>
-            </>
-          )}
-          {category && (
-            <>
-              <span>•</span>
-              <span class="capitalize">{category}</span>
-            </>
-          )}
+          <span>•</span>
+          <span class="capitalize">{country}</span>
+          <span>•</span>
+          <span class="capitalize">{city}</span>
+          <span>•</span>
+          <span class="capitalize">{category.replace('-', ' ')}</span>
           {lastUpdated && (
             <>
               <span>•</span>
@@ -70,32 +55,41 @@ const isPrivyConfigured = privyAppId && privyAppId !== 'your_privy_app_id_here';
               <span>{priceRange}</span>
             </div>
           )}
-          {isPremium && (
-            <div class="bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-200 px-3 py-1 rounded text-sm">
-              ⭐ Premium Guide
-            </div>
-          )}
+          <div class="bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-200 px-3 py-1 rounded text-sm">
+            🆓 Free Guide
+          </div>
         </div>
       </header>
 
-      <!-- Content Container -->
-      <div id="content-container">
-        {isPremium ? (
-          <>
-            <!-- Payment Gate for Premium Content -->
-            <PaymentGate client:load>
-              <div class="prose max-w-none dark:prose-invert">
-                <slot />
-              </div>
-            </PaymentGate>
-          </>
-        ) : (
-          <!-- Free Content -->
-          <div class="prose max-w-none dark:prose-invert">
-            <slot />
-          </div>
-        )}
+      <!-- Content -->
+      <div class="prose max-w-none dark:prose-invert">
+        <slot />
       </div>
+
+      <!-- Support Footer -->
+      <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <div class="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-6">
+          <h3 class="text-lg font-semibold mb-3 text-center">💜 Support This Guide</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-center mb-4">
+            Found this helpful? Support with SOL for more detailed guides and real-time updates!
+          </p>
+          <div class="text-center space-y-2">
+            <div class="font-mono text-sm bg-white dark:bg-gray-800 rounded p-3 border">
+              <strong>Solana Wallet:</strong><br>
+              <code class="text-purple-600 dark:text-purple-400">vivgdu332GMEk3FaupQa92gQjYd9LX6TMgjMVsLaCu4</code>
+            </div>
+            <div class="text-sm">
+              📱 <strong>Telegram:</strong> 
+              <a href="https://t.me/vivekpal0x" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">
+                @vivekpal0x
+              </a>
+            </div>
+            <p class="text-xs text-gray-500 italic">
+              After sending payment, DM me for personalized guidance and insider tips!
+            </p>
+          </div>
+        </div>
+      </footer>
     </article>
   </main>
 </Layout>

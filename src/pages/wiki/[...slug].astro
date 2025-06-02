@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content'
+import Layout from '../../layouts/wikiLayout.astro'
+
+export async function getStaticPaths() {
+  const wikiEntries = await getCollection('wiki')
+  
+  return wikiEntries.map(entry => ({
+    params: { 
+      slug: `${entry.data.country}/${entry.data.city}/${entry.data.category}`
+    },
+    props: { entry }
+  }))
+}
+
+const { entry } = Astro.props
+const { Content } = await entry.render()
+---
+
+<Layout frontmatter={entry.data}>
+  <Content />
+</Layout> 
