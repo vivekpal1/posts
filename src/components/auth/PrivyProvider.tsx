@@ -1,36 +1,43 @@
 import React from 'react';
-import { PrivyProvider as PrivyAuthProvider } from '@privy-io/react-auth';
+import { PrivyProvider as BasePrivyProvider } from '@privy-io/react-auth';
+import { toSolanaWalletConnectors } from '@privy-io/react-auth/solana';
 
 interface PrivyProviderProps {
     children: React.ReactNode;
 }
 
-export const PrivyProvider: React.FC<PrivyProviderProps> = ({ children }) => {
-    // Get the app ID from environment variables
-    const appId = import.meta.env.PUBLIC_PRIVY_APP_ID;
-
-    // If no app ID is provided, render children without Privy wrapper
-    if (!appId || appId === 'your-privy-app-id-here') {
-        console.warn('Privy app ID not configured. Wallet features will be disabled.');
-        return <>{children}</>;
-    }
-
+export function PrivyProvider({ children }: PrivyProviderProps) {
+    const solanaNetwork = import.meta.env.PUBLIC_SOLANA_NETWORK || 'devnet';
+    
     return (
-        <PrivyAuthProvider
-            appId={appId}
+        <BasePrivyProvider
+            appId={import.meta.env.PUBLIC_PRIVY_APP_ID}
             config={{
+                loginMethods: ['wallet', 'email', 'sms'],
                 appearance: {
-                    theme: 'dark',
-                    accentColor: '#676FFF',
+                    theme: 'light',
+                    accentColor: '#9945FF',
+                    walletChainType: 'solana-only',
                 },
                 embeddedWallets: {
                     createOnLogin: 'users-without-wallets',
                 },
-                loginMethods: ['wallet'],
-                supportedChains: ['solana'],
+                solanaClusters: [
+                    {
+                        name: solanaNetwork === 'mainnet-beta' ? 'mainnet-beta' : 'devnet',
+                        rpcUrl: solanaNetwork === 'mainnet-beta' 
+                            ? 'https://api.mainnet-beta.solana.com'
+                            : 'https://api.devnet.solana.com'
+                    }
+                ],
+                externalWallets: {
+                    solana: {
+                        connectors: toSolanaWalletConnectors(),
+                    },
+                },
             }}
         >
             {children}
-        </PrivyAuthProvider>
+        </BasePrivyProvider>
     );
-};
+}

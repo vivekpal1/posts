@@ -3,16 +3,18 @@ export interface PaymentRecord {
   userWallet: string;
   contentTitle: string;
   amount: number;
+  amountUsd: string;
   timestamp: number;
-  type: 'lifetime_access' | 'monthly_subscription';
+  type: 'lifetime_access';
+  network: string;
 }
 
-export const savePaymentRecord = (payment: PaymentRecord): void => {
+export const storePaymentRecord = (record: PaymentRecord): void => {
   try {
-    localStorage.setItem(`payment_${payment.contentTitle}`, JSON.stringify(payment));
+    localStorage.setItem(`payment_${record.contentTitle}`, JSON.stringify(record));
     localStorage.setItem('premium_access', 'true');
   } catch (error) {
-    console.error('Failed to save payment record:', error);
+    console.error('Failed to store payment record:', error);
   }
 };
 
@@ -26,29 +28,32 @@ export const getPaymentRecord = (contentTitle: string): PaymentRecord | null => 
   }
 };
 
-export const hasLifetimeAccess = (): boolean => {
+export const hasPaymentAccess = (contentTitle?: string): boolean => {
   try {
-    return localStorage.getItem('premium_access') === 'true';
-  } catch (error) {
+    const globalAccess = localStorage.getItem('premium_access');
+    if (globalAccess === 'true') return true;
+
+    if (contentTitle) {
+      const paymentRecord = getPaymentRecord(contentTitle);
+      return !!paymentRecord;
+    }
+
+    return false;
+  } catch {
     return false;
   }
 };
 
-export const getAllPaymentRecords = (): PaymentRecord[] => {
+export const clearPaymentData = (): void => {
   try {
-    const records: PaymentRecord[] = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key?.startsWith('payment_')) {
-        const record = localStorage.getItem(key);
-        if (record) {
-          records.push(JSON.parse(record));
-        }
+    // Clear all payment-related data
+    const keys = Object.keys(localStorage);
+    keys.forEach(key => {
+      if (key.startsWith('payment_') || key === 'premium_access') {
+        localStorage.removeItem(key);
       }
-    }
-    return records;
+    });
   } catch (error) {
-    console.error('Failed to get payment records:', error);
-    return [];
+    console.error('Failed to clear payment data:', error);
   }
 };

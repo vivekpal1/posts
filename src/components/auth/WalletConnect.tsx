@@ -1,18 +1,5 @@
 import React from 'react';
-
-// Conditional import to handle when Privy is not available
-let usePrivy: any;
-try {
-    ({ usePrivy } = require('@privy-io/react-auth'));
-} catch (error) {
-    // Fallback if Privy is not properly configured
-    usePrivy = () => ({
-        login: () => alert('Wallet connection not configured'),
-        logout: () => { },
-        authenticated: false,
-        user: null
-    });
-}
+import { usePrivy } from '@privy-io/react-auth';
 
 export const WalletConnect: React.FC = () => {
     const appId = import.meta.env.PUBLIC_PRIVY_APP_ID;
@@ -28,11 +15,11 @@ export const WalletConnect: React.FC = () => {
 
     const { login, logout, authenticated, user } = usePrivy();
 
-    if (authenticated) {
+    if (authenticated && user?.wallet?.address) {
         return (
             <div className="flex items-center space-x-4">
                 <span className="text-sm text-gray-600 dark:text-gray-300">
-                    Connected: {user?.wallet?.address?.slice(0, 8)}...
+                    Connected: {user.wallet.address.slice(0, 8)}...{user.wallet.address.slice(-8)}
                 </span>
                 <button
                     onClick={logout}
