@@ -1,0 +1,237 @@
+---
+import Layout from '@layouts/Layout.astro'
+import { getCollection, type CollectionEntry } from 'astro:content'
+
+export async function getStaticPaths() {
+  const wikiEntries = await getCollection('wiki')
+  
+  // Group by country and city to get unique combinations
+  const cityPages = wikiEntries.reduce((acc: any[], entry) => {
+    const key = `${entry.data.country}/${entry.data.city}`
+    if (!acc.some(page => page.key === key)) {
+      acc.push({
+        key,
+        country: entry.data.country,
+        city: entry.data.city,
+        entries: []
+      })
+    }
+    return acc
+  }, [])
+  
+  // Add entries to each city
+  cityPages.forEach(cityPage => {
+    cityPage.entries = wikiEntries.filter(entry => 
+      entry.data.country === cityPage.country && entry.data.city === cityPage.city
+    )
+  })
+  
+  return cityPages.map(cityPage => ({
+    params: { 
+      country: cityPage.country,
+      city: cityPage.city
+    },
+    props: { 
+      country: cityPage.country,
+      city: cityPage.city,
+      entries: cityPage.entries
+    }
+  }))
+}
+
+const { country, city, entries } = Astro.props
+const wikiEntries = entries as CollectionEntry<'wiki'>[]
+
+// Group entries by category
+const categorizedEntries = wikiEntries.reduce((acc: Record<string, CollectionEntry<'wiki'>[]>, entry) => {
+  const category = entry.data.category
+  if (!acc[category]) acc[category] = []
+  acc[category].push(entry)
+  return acc
+}, {})
+
+// Helper function to get country flag
+const getCountryFlag = (country: string) => {
+  const flags: Record<string, string> = {
+    'vietnam': '🇻🇳',
+    'thailand': '🇹🇭',
+    'singapore': '🇸🇬',
+    'malaysia': '🇲🇾',
+    'indonesia': '🇮🇩',
+    'philippines': '🇵🇭',
+    'japan': '🇯🇵',
+    'south-korea': '🇰🇷',
+  }
+  return flags[country] || '🌍'
+}
+
+// Helper function to get category icon
+const getCategoryIcon = (category: string) => {
+  const icons: Record<string, string> = {
+    'cafe': '☕',
+    'coworking': '💼',
+    'food': '🍜',
+    'vegan-food': '🥗',
+    'accommodation': '🏠',
+    'transport': '🚗',
+    'commute': '🚗',
+    'nightlife': '🌙',
+    'activities': '🎯',
+    'shopping': '🛍️',
+    'health': '🏥',
+  }
+  return icons[category] || '📋'
+}
+
+// Format category name for display
+const formatCategoryName = (category: string) => {
+  return category.replace('-', ' ').split(' ').map(word => 
+    word.charAt(0).toUpperCase() + word.slice(1)
+  ).join(' ')
+}
+
+// Format city name for display
+const formatCityName = (city: string) => {
+  return city.replace('-', ' ').split(' ').map(word => 
+    word.charAt(0).toUpperCase() + word.slice(1)
+  ).join(' ')
+}
+
+// Format country name for display
+const formatCountryName = (country: string) => {
+  return country.replace('-', ' ').split(' ').map(word => 
+    word.charAt(0).toUpperCase() + word.slice(1)
+  ).join(' ')
+}
+
+const totalEntries = wikiEntries.length
+---
+
+<Layout title={`${formatCityName(city)}, ${formatCountryName(country)} - Digital Nomad Guide`}>
+  <main class="font-sans font-medium">
+    <!-- Header -->
+    <header class="border-b borderBase pb-5 pt-5">
+      <div class="flex items-center gap-2 text-sm dark:text-gray-4 text-dark-1 mb-4">
+        <a href="/wiki" class="linkBase">← Back to Wiki</a>
+        <span>•</span>
+        <span class="capitalize">{formatCountryName(country)}</span>
+      </div>
+      
+      <h1 class="text-4xl font-bold mb-4 dark:text-white text-black flex items-center">
+        <span class="mr-3 text-5xl">{getCountryFlag(country)}</span>
+        {formatCityName(city)}
+      </h1>
+      
+      <p class="text-lg dark:text-gray-4 text-dark-1 mb-6">
+        Your complete guide to {formatCityName(city)}, {formatCountryName(country)}. Discover the best spots, hidden gems, and local insights from a fellow digital nomad.
+      </p>
+      
+      <div class="flex items-center gap-4 text-sm dark:text-gray-4 text-dark-1">
+        <div class="flex items-center gap-1">
+          <span>📍</span>
+          <span>{totalEntries} curated locations</span>
+        </div>
+        <div class="flex items-center gap-1">
+          <span>📝</span>
+          <span>{Object.keys(categorizedEntries).length} categories</span>
+        </div>
+        <div class="text-xs border borderBase px-2 py-1">
+          🆓 Free Guide
+        </div>
+      </div>
+    </header>
+
+    <!-- Categories Grid -->
+    <section class="py-8">
+      <h2 id="blockTitle" class="mb-6">Explore by Category</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {Object.entries(categorizedEntries).map(([category, categoryEntries]) => (
+          <div class="border borderBase p-6 hover:opacity-70 transition-opacity">
+            <div class="flex items-center mb-4">
+              <span class="text-2xl mr-3">{getCategoryIcon(category)}</span>
+              <h3 class="text-lg font-bold dark:text-white text-black">
+                {formatCategoryName(category)}
+              </h3>
+            </div>
+            
+            <p class="text-sm dark:text-gray-4 text-dark-1 mb-4">
+              {categoryEntries.length} location{categoryEntries.length > 1 ? 's' : ''} in this category
+            </p>
+            
+            <div class="space-y-2">
+              {categoryEntries.map((entry) => (
+                <a 
+                  href={`/wiki/${country}/${city}/${category}`}
+                  class="block linkBase hover:opacity-70 transition-opacity font-medium"
+                >
+                  {entry.data.title}
+                </a>
+              ))}
+            </div>
+            
+            <div class="mt-4 pt-4 border-t borderBase">
+              <a 
+                href={`/wiki/${country}/${city}/${category}`}
+                class="text-sm linkBase font-medium flex items-center"
+              >
+                View full guide →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="border-t borderBase pt-8 mb-8">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center">
+          <div class="text-2xl font-bold dark:text-white text-black mb-2">{totalEntries}</div>
+          <div class="text-sm dark:text-gray-4 text-dark-1">Total Locations</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold dark:text-white text-black mb-2">{Object.keys(categorizedEntries).length}</div>
+          <div class="text-sm dark:text-gray-4 text-dark-1">Categories Covered</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold dark:text-white text-black mb-2">🆓</div>
+          <div class="text-sm dark:text-gray-4 text-dark-1">Completely Free</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Support Footer -->
+    <footer class="border-t borderBase pt-6 mt-12">
+      <div class="border borderBase p-4">
+        <h3 id="blockTitle" class="text-center mb-3">Support This Guide</h3>
+        <p class="dark:text-gray-4 text-dark-1 text-center mb-4 text-sm">
+          Found this helpful? Support with SOL for more detailed guides and real-time updates!
+        </p>
+        <div class="text-center space-y-3">
+          <div class="text-sm border borderBase p-3">
+            <strong class="dark:text-white text-black">Solana Wallet:</strong><br>
+            <code class="text-xs font-mono dark:text-gray-4 text-dark-1 break-all">vivgdu332GMEk3FaupQa92gQjYd9LX6TMgjMVsLaCu4</code>
+          </div>
+          <div class="text-sm">
+            📱 <strong class="dark:text-white text-black">Telegram:</strong> 
+            <a href="https://t.me/vivekpal0x" target="_blank" rel="noopener noreferrer" class="linkBase">
+              @vivekpal0x
+            </a>
+          </div>
+          <p class="text-xs dark:text-gray-4 text-dark-2 italic">
+            After sending payment, DM me for personalized guidance and insider tips!
+          </p>
+        </div>
+      </div>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+#blockTitle {
+  @apply md:text-base font-extrabold italic dark:text-white text-black;
+}
+#blockTitle::before {
+  content: ":: ";
+}
+</style> 
