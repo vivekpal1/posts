@@ -107,7 +107,10 @@ Cute coffee shop that happens to be perfect for work. Their **matcha is legitima
 **📍** [209/21 Nguyễn Văn Thoại, An Hải, Ngũ Hành Sơn](https://maps.app.goo.gl/BPZcmTtT1MyBvX7F6)  
 **📞** 0773511573
 
-**Perfect for:** Quick coffee + work sessions. Grab their **café đá** (Vietnamese iced coffee) and knock out a few hours of focused work. Nothing fancy, just reliable.
+**Perfect for:** Quick coffee + work sessions.
+- Real cool working space with good cafe. When I walked in and show some kids working above floor.
+- Grab their **café đá** and knock out a few hours of focused work.
+- For just working on the above floor, you can pay 7k vnd per hour (probably the most efficient option I found).
 
 ---
 
