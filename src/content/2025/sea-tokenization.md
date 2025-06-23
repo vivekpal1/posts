@@ -4,7 +4,7 @@ title: How Web3 Will Rebuild Southeast Asia's $263B Marketplace Empire
 collection: 2025
 pubDate: "2025-06-24"
 slug: sea-tokenization
-description:  A comprehensive analysis from the ground up - by a Solana validator operator building the future of SEA commerce
+description:  A comprehensive analysis from the ground up.
 tags: ["SEA Marketplace Landscape","South East Asia", "Tokenization", "Commerce"]
 ---
 
