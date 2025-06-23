@@ -320,7 +320,7 @@ Compliance-first architecture design ensures platform functionality adapts to re
 
 Blockchain infrastructure risks include network congestion, validator outages, and smart contract vulnerabilities that could affect marketplace operations and user funds.
 
-Validator diversification across multiple data centers and geographic regions provides redundancy that maintains network access during infrastructure problems. Our validator operations provide direct control over network reliability.
+Validator diversification across multiple data centers and geographic regions provides redundancy that maintains network access during infrastructure problems. Validator operations in SEA can provide direct control over network reliability.
 
 Smart contract auditing by multiple security firms reduces vulnerability risks while bug bounty programs incentivize community security research that identifies potential issues before they affect users.
 
