@@ -3,7 +3,7 @@ layout: ../../layouts/postsLayout.astro
 title: How Web3 Will Rebuild Southeast Asia's $263B Marketplace Empire
 collection: 2025
 pubDate: "2025-06-24"
-slug: sea-tokenization
+slug: sea-marketplace-tokenization
 description:  A comprehensive analysis from the ground up.
 tags: ["SEA Marketplace Landscape","South East Asia", "Tokenization", "Commerce"]
 ---
@@ -20,6 +20,8 @@ This comprehensive analysis, written from the perspective of someone actively bu
 
 The research demonstrates how proven tokenization frameworks from successful projects like Helium and Braintrust can be adapted to address SEA-specific challenges including cross-border payment friction, platform dependency, trust infrastructure failures, and the massive unbanked population seeking financial inclusion. With Solana's technical advantages perfectly aligned to SEA's mobile-first, cost-sensitive requirements, the infrastructure foundation exists today to support this transformation.
 
+![Comparision](/public/blogs/sea-marketplace-tokenization/01.png)
+
 ---
 
 ## The Great Fee Extraction of 2024: Data from the Battlefield
@@ -29,6 +31,8 @@ Building some crucial Solana projects and working with SuperteamVN while maintai
 **Shopee's Strategic Fee Restructuring**
 
 Shopee's commission adjustments across Southeast Asian markets demonstrate coordinated value extraction during a period of market consolidation. In Thailand, commission rates increased from 10% to 13%, representing a 30% increase in platform costs for sellers. Malaysia saw adjustments from 8% to 10.5%, while Singapore's premium positioning enabled increases to 12-15% for certain categories. These changes occurred simultaneously with Shopee achieving its first full-year profitability, generating $2.8 billion in revenue with 34% year-over-year growth.
+
+![Comparision](/public/blogs/sea-marketplace-tokenization/02.png)
 
 The timing reveals strategic coordination rather than market response. Shopee implemented these increases during peak shopping seasons when seller migration costs would be highest, effectively leveraging platform dependency to minimize resistance. Conversations with local sellers in Da Nang and Ho Chi Minh City consistently reveal the same frustration: fees increase with no corresponding improvement in services, yet alternative platforms remain limited.
 
