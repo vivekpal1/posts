@@ -12,6 +12,9 @@ tags: ["SEA Marketplace Landscape","South East Asia", "Tokenization", "Commerce"
 
 ---
 
+![image](https://github.com/user-attachments/assets/9c75faa9-4a27-429b-8aac-5927b6e8b258)
+
+
 ## Executive Summary
 
 Southeast Asia's digital marketplace ecosystem reached $263 billion in gross merchandise value during 2024, yet this unprecedented growth masks a critical vulnerability that threatens the entire foundation of the region's digital economy. Major platforms including Shopee, Lazada, Tokopedia, and Grab have implemented aggressive fee increases ranging from 23% to 33% while simultaneously achieving record profitability, creating an unsustainable value extraction model that penalizes the very users who built these platforms.
@@ -20,7 +23,8 @@ This comprehensive analysis, written from the perspective of someone actively bu
 
 The research demonstrates how proven tokenization frameworks from successful projects like Helium and Braintrust can be adapted to address SEA-specific challenges including cross-border payment friction, platform dependency, trust infrastructure failures, and the massive unbanked population seeking financial inclusion. With Solana's technical advantages perfectly aligned to SEA's mobile-first, cost-sensitive requirements, the infrastructure foundation exists today to support this transformation.
 
-![Comparision](../../../public/blogs/sea-marketplace-tokenization/01.png)
+![ChatGPT Image Jun 24, 2025, 03_50_30 PM](https://github.com/user-attachments/assets/2ec63514-ceca-4a1f-b749-60acebbfdf90)
+
 
 ---
 
@@ -32,7 +36,8 @@ Building some crucial Solana projects and working with SuperteamVN while maintai
 
 Shopee's commission adjustments across Southeast Asian markets demonstrate coordinated value extraction during a period of market consolidation. In Thailand, commission rates increased from 10% to 13%, representing a 30% increase in platform costs for sellers. Malaysia saw adjustments from 8% to 10.5%, while Singapore's premium positioning enabled increases to 12-15% for certain categories. These changes occurred simultaneously with Shopee achieving its first full-year profitability, generating $2.8 billion in revenue with 34% year-over-year growth.
 
-![Comparision](../../../public/blogs/sea-marketplace-tokenization/02.png)
+![ChatGPT Image Jun 24, 2025, 03_59_35 PM](https://github.com/user-attachments/assets/54e2bc6f-c70d-4eb8-88d1-360dfa7d0108)
+
 
 The timing reveals strategic coordination rather than market response. Shopee implemented these increases during peak shopping seasons when seller migration costs would be highest, effectively leveraging platform dependency to minimize resistance. Conversations with local sellers in Da Nang and Ho Chi Minh City consistently reveal the same frustration: fees increase with no corresponding improvement in services, yet alternative platforms remain limited.
 
@@ -97,6 +102,8 @@ Singapore's fintech ecosystem provides technical talent and infrastructure partn
 ## The Mobile-First Imperative: Why Solana Wins in Southeast Asia
 
 Southeast Asia's mobile-first digital adoption creates specific technical requirements that favor Solana's architecture over alternative blockchain platforms. Understanding these requirements emerges from direct observation of user behavior patterns across the region, combined with technical analysis of blockchain performance under SEA-specific conditions.
+
+![ChatGPT Image Jun 24, 2025, 04_06_17 PM](https://github.com/user-attachments/assets/b957a315-1500-4380-a5af-d494095c6b82)
 
 **Transaction Cost Sensitivity in Emerging Markets**
 
