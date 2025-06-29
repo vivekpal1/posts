@@ -15,6 +15,95 @@ priceRange: "$1-3"
 
 ---
 
+## 🌙 **24/7 Work-Friendly Cafés** - *The Night Owl's Lifeline*
+
+*For digital nomads who work across time zones, have insomnia, or just prefer the quiet energy of late-night productivity*
+
+### 🏆 **HARVARD CAVE** - *My Absolute Favorite*
+**📍** 209/21 Nguyễn Văn Thoại, An Hải, Ngũ Hành Sơn  
+**💰** 7k VND/hour workspace OR pay for drinks | **⏰** Until 11pm *(not 24/7 anymore)*  
+**🔗** [Google Maps](https://maps.app.goo.gl/pTeHJN8wWCnPbHC58)
+
+**Why it's unbeatable:**
+- **Family-run warmth** - Ms. Lien is incredibly friendly and kind
+- **Proper workspace setup** - nice chairs and desks designed for work
+- **Flexible payment** - either buy drinks or pay 7k VND/hour for workspace
+- **Community atmosphere** - regulars become like family
+
+**The reality:** Used to be 24/7 but now closes at 11pm. Still absolutely worth visiting for daytime/evening work sessions.
+
+---
+
+### 🔇 **BigHome Coffee 24/7** - *The Silent Sanctuary*
+**📍** 15 Hàm Tử, Bắc Mỹ Phú, Ngũ Hành Sơn  
+**⏰** 24/7 | **🔗** [Google Maps](https://maps.app.goo.gl/Ss7v2RkPTvwLcfnbA)
+
+**Perfect for:** **Silent coffee shop with nice workspace environment on upper floor.** Your reliable option for late-night work when everything else is closed.
+
+**Best for:** Deep focus work, overnight coding sessions, when you need guaranteed quiet
+
+---
+
+### ⬆️ **Zozi Coffee 24/7** - *The Upscale Silent Option*
+**📍** 16 Dương Khuê, Bắc Mỹ Phú, Ngũ Hành Sơn  
+**⏰** 24/7 | **🔗** [Google Maps](https://maps.app.goo.gl/gqdfsHV323xUBRTj7)
+
+**The upgrade:** **More upscale version of BigHome with extra comfort and silent environment.** Second floor is perfect for sitting long hours.
+
+**Best for:** When you want comfort during extended work sessions, client calls requiring professional background
+
+---
+
+### 😊 **THÂU COFFEE 24/7** - *The Friendly Option*
+**📍** 41 Võ Như Hưng, Bắc Mỹ Phú, Ngũ Hành Sơn  
+**⏰** 24/7 | **🔗** [Google Maps](https://maps.app.goo.gl/SCSPpTn1AkryjRRq5)
+
+**What sets it apart:** **Staff is very friendly** - another solid option in the Bắc Mỹ Phú area cluster of 24/7 spots.
+
+---
+
+### 🐠 **Anytime Coffee** - *The Koi Pond Workspace*
+**📍** 237 Chương D., Bắc Mỹ An, Ngũ Hành Sơn  
+**⏰** 24/7 | **🔗** [Google Maps](https://maps.app.goo.gl/ESUUgnpVPgnxs7XH9)
+
+**Honest review:** **Chairs aren't great for all-day sitting,** but it's open 24/7 with basics for work. **Super cute koi pond inside** adds zen vibes.
+
+**Best for:** Short work sessions, when you want nature elements, backup option when other places are full
+
+---
+
+### 🔥 **HI4 COFFEE & WORKSPACE** - *The Nomad Magnet*
+**📍** 120 Mai Thúc Lân, Bắc Mỹ Phú, Ngũ Hành Sơn  
+**🔗** [Google Maps](https://maps.app.goo.gl/8awFJx9j2zk8QjtX8)
+
+**The reality:** **Very famous spot among nomads - most of the time filled with people.** Great for networking but maybe not for focus work.
+
+**Best for:** Meeting other digital nomads, networking, when you want community energy
+
+---
+
+### 🛋️ **Benjamin Coffee - Mrs. Hiền** - *The Chill 24/7*
+**📍** 272 Đ. Trần Hưng Đạo, An Hải, Sơn Trà  
+**⏰** 24/7 | **🔗** [Google Maps](https://maps.app.goo.gl/6fVR2gFVvU36uoAm9)
+
+**The vibe:** **Good coffee, chill place, nice staff.** Maybe not suitable for long work hours but perfect for 24/7 social coffee breaks.
+
+**Best for:** Coffee breaks between work sessions, socializing, when you need caffeine but not work setup
+
+---
+
+### 🏛️ **Cuckoo House Coffee** - *The Architectural Beauty*
+**📍** 34 Hồ Phi Tích, Hoà Xuân, Cẩm Lệ  
+**🔗** [Google Maps](https://maps.app.goo.gl/smCUiDbQFvK2z9kj9)
+
+**Special features:** **Beautiful architecture, pleasant music, unusual coffee drinks.** Great place to drink coffee and relax.
+
+**Best for:** When you want aesthetic inspiration, trying unique coffee varieties, architectural photography
+
+![24/7 workspace setup](image-placeholder-24-7-workspace.jpg)
+
+---
+
 ## 🇻🇳 Essential Vietnamese Coffee Culture
 
 ### **Understanding Vietnamese Coffee:**
@@ -184,6 +273,23 @@ Vietnamese coffee isn't just coffee - it's a **ritual, a social experience, and 
 ---
 
 ## 🥤 **Specialty Drink Champions**
+
+### 🍃 **SẾU the tearoom** - *The Matcha Paradise*
+**📍** 01 Mỹ An 6, Bắc Mỹ Phú, Ngũ Hành Sơn  
+**📞** +840939259316 | **📱** [@seu.thetearoom](http://instagram.com/seu.thetearoom)  
+**🔗** [Google Maps](https://maps.app.goo.gl/U1J6gok3QcnuKFtf7)
+
+> *This is paradise for Matcha lovers. Absolute hidden gem for tea lovers. Best in the town, or maybe best in Vietnam as well.*
+
+**What makes it extraordinary:**
+- **Ceremonial grade matcha** - different varieties, proper preparation
+- **Best hojicha in Da Nang** - roasted tea perfection
+- **Hojicha cake** - damn good, must-try dessert
+- **Contemporary matcha bar** - modern presentation of traditional tea culture
+
+**Perfect for:** Matcha enthusiasts, tea ceremony experience, when coffee isn't what you need, Instagram-worthy tea moments
+
+---
 
 ### ❄️ **Soul Specialty Coffee** - *The Cold Brew Master*
 **📍** 24 Phan Bội Châu, Thạch Thang, Hải Châu  
