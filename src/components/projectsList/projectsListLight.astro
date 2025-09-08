@@ -2,39 +2,53 @@
 import { projects } from '@components/projectsList/_projectList'
 const projectsListLitght = projects.slice(0, 4);
 ---
-<main>
+<main class="space-y-4">
   <a
-  href="/projects"
-  class="flex items-center gap-2 decoration-none border-none cursor-pointer hover:opacity-30 w-32"
+    href="/projects"
+    class="flex items-center gap-2 decoration-none border-none cursor-pointer hover:opacity-70 w-32 transition-all duration-300 group"
   >
-  <p id="blockTitle">Projects</p><div class="i-ph-arrow-up-right"></div>
+    <p id="blockTitle" class="group-hover:shimmerText">Projects</p>
+    <div class="i-ph-arrow-up-right transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"></div>
   </a>
-  <div class="not-prose grid md:grid-cols-2 gap-5">
-      {
-        projectsListLitght.map((project) => {
-          return (
-            <div id="project" class="flex flex-col gap-2">
-              <div class="flex items-center gap-2">
-                <a target="_blank" href={project.repoLink} class="italic font-sans font-bold border-none">
-                  {project.projectName}
-                </a>
-                <div class="flex items-center">
-                  <a
-                    target="_blank"
-                    href={project.repoLink}
-                    class=" font-sans opacity-50 hover:opacity-100 i-ph-github-logo block transition-opacity"
-                  />
-                  <a
-                    target="_blank"
-                    href={project.previewLink}
-                    class=" font-sans opacity-50 hover:opacity-100 i-ph-link block transition-opacity"
-                  />
-                </div>
+  
+  <div class="not-prose grid md:grid-cols-2 gap-4">
+    {
+      projectsListLitght.map((project, index) => {
+        return (
+          <div class={`glassCard p-4 flex flex-col gap-3 group hover:scale-102 transition-all duration-300 animate-delay-${(index + 1) * 150} relative overflow-hidden`}>
+            <div class="absolute inset-0 bg-gradient-to-br from-sage-200/10 to-sage-300/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            
+            <div class="relative z-10 flex items-center justify-between">
+              <a 
+                target="_blank" 
+                href={project.repoLink} 
+                class="italic font-sans font-bold border-none hover:shimmerText transition-all duration-300 flex-1"
+              >
+                {project.projectName}
+              </a>
+              
+              <div class="flex items-center gap-2 ml-3">
+                <a
+                  target="_blank"
+                  href={project.repoLink}
+                  class="font-sans opacity-50 hover:opacity-100 i-ph-github-logo block transition-all duration-300 hover:scale-110 hover:text-sage-400"
+                />
+                <a
+                  target="_blank"
+                  href={project.previewLink}
+                  class="font-sans opacity-50 hover:opacity-100 i-ph-link block transition-all duration-300 hover:scale-110 hover:text-sage-400"
+                />
               </div>
-              <p class="font-sans text-sm">{project.description}</p>
             </div>
-          )
-        })
-      }
-    </div>
+            
+            <p class="relative z-10 font-sans text-sm text-sage-400/70 dark:text-sage-200/70 leading-relaxed">
+              {project.description}
+            </p>
+            
+            <div class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-sage-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+        )
+      })
+    }
+  </div>
 </main>

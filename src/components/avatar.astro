@@ -2,25 +2,38 @@
 const title = "vivek";
 import Twitter from "@components/socials/twitter.astro";
 import Instagram from "@components/socials/instagram.astro";
-const subtitle = "software builder, traveller, writer";
+const subtitle = "software engineer, infrastructure, solana";
 const imageUrl = "https://github.com/vivekpal1.png";
 import "../styles/main.css";
 ---
 
 <section
-  class="flex flex-col items-center space-y-3 animate-delay-50 p-4 rounded-lg shadow-lg"
+  class="flex flex-col items-center space-y-4 animate-delay-50 p-6 glassCard floatingElement relative overflow-hidden"
 >
-  <img
-    src={imageUrl}
-    alt="{title}"
-    class="w-24 h-24 rounded-full object-cover"
-  />
-  <h1 class="font-bold highlight-text text-xxl text-gray-800 dark:text-white">
-    {title}
-  </h1>
-  <p class="font-bold text-gray-600 dark:text-gray-500">{subtitle}</p>
-  <div class="flex space-x-2 justify-center">
-    <Twitter userName="vivekpal0x" />
-    <Instagram userName="vivekpal.in" />
+  <!-- Glassmorphism background accent -->
+  <div class="absolute inset-0 bg-gradient-to-br from-sage-100/20 to-sage-200/10 rounded-xl"></div>
+  <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-sage-300/50 to-transparent"></div>
+  
+  <div class="relative z-10 flex flex-col items-center space-y-4">
+    <div class="relative group">
+      <div class="absolute -inset-1 bg-gradient-to-r from-sage-300 to-sage-400 rounded-full blur opacity-30 group-hover:opacity-50 transition duration-300 glowEffect"></div>
+      <img
+        src={imageUrl}
+        alt="{title}"
+        class="relative w-24 h-24 rounded-full object-cover border-2 border-sage-200/50 shadow-lg transition-transform duration-300 group-hover:scale-105"
+      />
+    </div>
+    
+    <h1 class="font-bold highlight-text text-xxl shimmerText relative">
+      {title}
+      <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-sage-400/60 to-transparent"></div>
+    </h1>
+    
+    <p class="font-medium text-sage-400/80 dark:text-sage-200/80 text-center tracking-wide">{subtitle}</p>
+    
+    <div class="flex space-x-3 justify-center pt-2">
+      <Twitter userName="vivekpal0x" />
+      <Instagram userName="not_vivekpal" />
+    </div>
   </div>
 </section>

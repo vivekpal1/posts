@@ -15,26 +15,39 @@ const classList = [
 ---
 
 <Layout title="vivek">
-  <article class="prose">
+  <article class="prose relative">
+    <!-- Magnetic cursor effect container -->
+    <div id="cursor-glow" class="fixed w-6 h-6 pointer-events-none z-50 rounded-full bg-sage-400/20 blur-sm transition-all duration-300 ease-out opacity-0"></div>
     <Avatar />
-    <section class:list={["animate-delay-150", classList]}>
-      <p>
-        hey there, tech souls! i'm vivek, decentralized software builder, part time writer, a proud member of
-        <span class="font-serif italic decoration-none"></span>,
-        <a
-          class="highlight-text font-bold decoration-none inline-block"
-          target="_blank"
-          href="https://superteam.fun"
-        >
-          superteam vietnam</a
-        >.
-      </p>
+    <section class:list={["animate-delay-150", classList]} data-magnetic>
+      <div class="glassCard p-6 relative overflow-hidden group">
+        <div class="absolute inset-0 bg-gradient-to-r from-sage-100/10 via-sage-200/5 to-sage-100/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute top-0 left-0 w-0 h-0.5 bg-gradient-to-r from-sage-400 to-sage-300 group-hover:w-full transition-all duration-700 ease-out"></div>
+        
+        <p class="relative z-10 leading-relaxed">
+          hey there, tech souls! i'm vivek, decentralized software infrastructure builder, a proud member of
+          <span class="font-serif italic decoration-none"></span>,
+          <a
+            class="highlight-text font-bold decoration-none inline-block relative group/link"
+            target="_blank"
+            href="https://superteam.fun"
+          >
+            <span class="relative z-10">superteam vietnam</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-sage-400/20 to-sage-300/20 rounded scale-0 group-hover/link:scale-100 transition-transform duration-300 origin-center"></div>
+          </a>.
+        </p>
+      </div>
     </section>
-    <section class:list={["animate-delay-750", classList]}>
+    <section class:list={["animate-delay-750", classList]} data-magnetic>
       <PostsListLight />
     </section>
-    <section class:list={["animate-delay-900", classList]}>
-      <p id="blockTitle">more about me</p>
+    <section class:list={["animate-delay-900", classList]} data-magnetic>
+      <div class="glassCard p-6 space-y-4 relative overflow-hidden group">
+        <div class="absolute inset-0 bg-gradient-to-br from-sage-100/10 to-sage-200/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute -top-20 -right-20 w-40 h-40 bg-sage-300/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-1000"></div>
+        
+        <p id="blockTitle" class="relative z-10">more about me</p>
+        <div class="relative z-10 space-y-4 text-sage-400/80 dark:text-sage-200/80">
       <p>
        yet another software engineer immersed in the Solana ecosystem, building decentralized infrastructure like wind network and previously shastraos, a web3-native linux os. with a background in linux kernel development and open-source contributions, i’m driven to create tech that empowers users through decentralization and privacy.
       </p>
@@ -45,10 +58,10 @@ const classList = [
         i’m on a mission to build meaningful Web3 solutions and find peace in life’s big questions ❓. Whether it’s crypto, p2p tech, geopolitics 🌎, or the intricacies of geoeconomics, I’m always up for a deep chat. Join me if you’re curious, want to break free from procrastination, or share a passion for a decentralized future.
       </p>
     </section>
-    <section class:list={["animate-delay-900", classList]}>
+    <section class:list={["animate-delay-900", classList]} data-magnetic>
       <ProjectsListLight />
     </section>
-    <section class:list={["animate-delay-950", classList]}>
+    <section class:list={["animate-delay-950", classList]} data-magnetic>
       <Link />
     </section>
   </article>
@@ -64,4 +77,112 @@ const classList = [
   #blockTitle::before {
     content: ":: ";
   }
+  
+  /* Magnetic cursor effect */
+  [data-magnetic] {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Enhanced scroll animations */
+  @keyframes morphBackground {
+    0%, 100% { 
+      background: radial-gradient(circle at 20% 50%, rgba(95, 116, 112, 0.1) 0%, transparent 50%);
+    }
+    33% { 
+      background: radial-gradient(circle at 80% 20%, rgba(136, 150, 150, 0.1) 0%, transparent 50%);
+    }
+    66% { 
+      background: radial-gradient(circle at 40% 80%, rgba(184, 189, 181, 0.1) 0%, transparent 50%);
+    }
+  }
+  
+  body::after {
+    animation: morphBackground 20s ease-in-out infinite, noiseShift 15s ease-in-out infinite alternate;
+  }
 </style>
+
+<script>
+  // Magnetic cursor effect
+  const cursorGlow = document.getElementById('cursor-glow');
+  const magneticElements = document.querySelectorAll('[data-magnetic]');
+  
+  let mouseX = 0;
+  let mouseY = 0;
+  let isMoving = false;
+  
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    if (cursorGlow) {
+      cursorGlow.style.left = mouseX - 12 + 'px';
+      cursorGlow.style.top = mouseY - 12 + 'px';
+      cursorGlow.style.opacity = '1';
+    }
+    
+    if (!isMoving) {
+      isMoving = true;
+      requestAnimationFrame(updateMagneticElements);
+    }
+  });
+  
+  function updateMagneticElements() {
+    magneticElements.forEach((element) => {
+      const rect = element.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      const deltaX = mouseX - centerX;
+      const deltaY = mouseY - centerY;
+      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+      
+      if (distance < 150) {
+        const strength = (150 - distance) / 150;
+        const moveX = deltaX * strength * 0.1;
+        const moveY = deltaY * strength * 0.1;
+        
+        element.style.transform = `translate(${moveX}px, ${moveY}px) scale(${1 + strength * 0.02})`;
+      } else {
+        element.style.transform = 'translate(0px, 0px) scale(1)';
+      }
+    });
+    
+    isMoving = false;
+  }
+  
+  document.addEventListener('mouseleave', () => {
+    if (cursorGlow) {
+      cursorGlow.style.opacity = '0';
+    }
+    magneticElements.forEach((element) => {
+      element.style.transform = 'translate(0px, 0px) scale(1)';
+    });
+  });
+  
+  // Parallax scroll effect for floating particles
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const particles = document.querySelectorAll('.particle');
+    
+    particles.forEach((particle, index) => {
+      const speed = 0.5 + (index * 0.1);
+      particle.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+  });
+  
+  // Dynamic text shimmer on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('shimmerText');
+        setTimeout(() => {
+          entry.target.classList.remove('shimmerText');
+        }, 2000);
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  document.querySelectorAll('#blockTitle').forEach((title) => {
+    observer.observe(title);
+  });
+</script>
