@@ -8,6 +8,18 @@ interface projectsType {
 type Projects<T> = T[]
 
 export const projects: Projects<projectsType> = [
+ {
+    projectName: 'v1ta',
+    description: 'Base layer money for Solana',
+    repoLink: 'https://github.com/v1ta-labs/v1ta',
+    previewLink: 'https://v1ta.xyz/',
+  }, 
+  {
+    projectName: 'Shadow',
+    description: 'Arcium powered seald-bid privacy auctions on Solana',
+    repoLink: 'https://github.com/shadowlabs-sol/shadow',
+    previewLink: 'https://shadowprotocol.fun/',
+  },
   {
     projectName: 'MultiRPC',
     description: 'Solana RPC aggregation system that provides high availability and performance by intelligently routing requests across multiple RPC endpoints.',
@@ -15,7 +27,7 @@ export const projects: Projects<projectsType> = [
     previewLink: 'https://github.com/vivekpal1/multi-rpc',
   },
   {
-    projectName: 'Tide',
+    projectName: 'Solang',
     description: 'A toy lang with self written compiler compatable to compile solana programs in native rust, just wrote to learn things ',
     repoLink: 'https://github.com/vivekpal1/so-lang',
     previewLink: 'https://github.com/vivekpal1/so-lang',
