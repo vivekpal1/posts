@@ -8,12 +8,12 @@ interface projectsType {
 type Projects<T> = T[]
 
 export const projects: Projects<projectsType> = [
- {
+  {
     projectName: 'v1ta',
     description: 'Base layer money for Solana',
     repoLink: 'https://github.com/v1ta-labs/v1ta',
     previewLink: 'https://v1ta.xyz/',
-  }, 
+  },
   {
     projectName: 'Shadow',
     description: 'Arcium powered seald-bid privacy auctions on Solana',
@@ -55,6 +55,12 @@ export const projects: Projects<projectsType> = [
     description: 'Innovating global data management with unprecedented speed and scale.',
     repoLink: 'https://github.com/ipdm-wg/ipdm',
     previewLink: 'https://ipdm.tech',
+  },
+  {
+    projectName: 'Emerald eUSD',
+    description: 'Yield-Bearing Stablecoin with RWA on Ethereum',
+    repoLink: 'https://github.com/vivekpal1/emeraldUSD',
+    previewLink: 'https://github.com/vivekpal1/emeraldUSD',
   },
   {
     projectName: 'Mai: SuperteamVN AI Bot',
