@@ -4,7 +4,7 @@ import react from '@astrojs/react'
 import { remarkReadingTime } from './src/scripts/remark-reading-time.mjs'
 
 export default defineConfig({
-  site: 'https://vivekpal.xyz',
+  site: 'https://vi01.xyz',
   markdown: {
     shikiConfig: {
       theme: 'css-variables',

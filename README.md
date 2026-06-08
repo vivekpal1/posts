@@ -1,5 +1,5 @@
-### [my posts](https://vivekpal.in)
- Source repo for my website for blog posts and content.
+### [vi01.xyz](https://vi01.xyz)
+ Source repo for vivek pal's personal site. Blog posts, projects, wiki, and more.
 
 > 📦 This project uses bun for management
 

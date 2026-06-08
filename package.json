@@ -1,7 +1,7 @@
 {
-  "name": "ekar.site",
-  "version": "0.0.1",
-  "description": "yi's personal site",
+  "name": "vi01.xyz",
+  "version": "0.1.0",
+  "description": "vivek pal's personal site. AI and systems engineer. building kdo, kdow, and kanad.",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
